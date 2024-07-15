@@ -1,9 +1,15 @@
 package com.alura.forohub.domain.usuario;
 
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.alura.forohub.domain.topico.Topico;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -25,7 +31,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "nombre")
-public class Usuario {
+public class Usuario implements UserDetails{
   @Id
   @GeneratedValue
   private Long id;
@@ -34,6 +40,7 @@ public class Usuario {
 
   private String email;
 
+  @Getter(value = AccessLevel.NONE)
   private String password;
 
   @Setter(value = AccessLevel.NONE)
@@ -54,4 +61,19 @@ public class Usuario {
     topicos.remove(topico);
     topico.setAutor(null);
   }
+
+  @Override
+  public String getUsername() {
+    return this.email;
+  }
+
+  @Override
+  public String getPassword() {
+    return this.password;
+  }
+
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+    }
 }

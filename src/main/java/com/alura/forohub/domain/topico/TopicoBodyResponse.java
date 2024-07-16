@@ -11,9 +11,9 @@ public record TopicoBodyResponse(
     Boolean status,
     Long idAutor,
     String nombreCurso
-) {
+                                 ) {
   public TopicoBodyResponse(Topico topico){
     this(topico.getId(), topico.getTitulo(), topico.getMensaje(), LocalDateTime.ofInstant(topico.getFechaCreacion(), ZoneId.systemDefault()),
-        topico.getStatus(), topico.getAutor().getId(), topico.getCurso().getNombre());
+         topico.getStatus(), topico.getAutor().getId(), topico.getCurso().getNombre());
   }
 }

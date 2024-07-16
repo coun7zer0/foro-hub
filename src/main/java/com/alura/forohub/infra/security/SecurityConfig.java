@@ -18,22 +18,8 @@ import org.springframework.security.web.util.matcher.RegexRequestMatcher;
 @Configuration
 public class SecurityConfig {
 
-    @Autowired
-    private SecurityFilter securityFilter;
-
-  // @Bean
-  // public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-  //   http
-  //     .cors(AbstractHttpConfigurer::disable) // Deshabilitar CORS explícitamente
-  //     .sessionManagement(session -> session
-  //       .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-  //     .authorizeHttpRequests(authorize -> authorize
-  //       .requestMatchers(HttpMethod.POST, "/login").permitAll()
-  //       .requestMatchers(HttpMethod.GET, "/topicos").permitAll()
-  //       .requestMatchers(RegexRequestMatcher.regexMatcher(HttpMethod.GET, "/topicos/[0-9]+")).permitAll()
-  //       .anyRequest().authenticated());
-  //   return http.build();
-  // }
+  @Autowired
+  private SecurityFilter securityFilter;
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {

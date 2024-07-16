@@ -1,0 +1,77 @@
+* Foro Hub
+-----
+Este proyecto es parte de un desafió propuesto por alura, mismo que es
+parte del programa Oracle ONE Next Education.
+
+** Descripción
+El objetivo de este desafió es desarrollar una API Rest para un foro
+en Spring que le permita a los usuarios interactuar con los tópicos
+del foro mediante consultas a enpoints.
+** Tecnologías Utilizadas
+- [[https://openjdk.org/projects/jdk/17/][JDK 17]]
+- [[https://maven.apache.org/ref/4.0.0-alpha-9/][Apache Maven v4]]
+- [[https://github.com/FasterXML/jackson][Jackson]]
+- [[https://projectlombok.org/][Lombok]]
+- [[https://hibernate.org/validator/][Hibernate Validator]]
+- [[https://flywaydb.org/][Flyway Migrtion]]
+- [[https://spring.io/projects/spring-boot][Spring Boot]]
+  - [[https://spring.io/projects/spring-data-jpa][Spring Data JPA]]
+  - [[https://spring.io/projects/spring-ws/][Spring Web]]
+  - [[https://spring.io/projects/spring-security][Spring Security]]
+  - [[https://docs.spring.io/spring-boot/docs/1.5.16.RELEASE/reference/html/using-boot-devtools.html][Sprig Boot Devtools]]
+- [[https://mariadb.org][MariaDB]]
+  - [[https://mariadb.com/kb/es/acerca-de-mariadb-connectorj/][MariaDB Connector/J]]
+
+** Funcionalidades
+*** Login
+El software permite hacer un login mediante un *POST* al endpoint
+*/login*, el mismo valida la información de inicio de sesión, si los
+datos enviados no están en un formato valido se lo notifica al
+usuario, si los datos si lo están y ademas la información es correcta
+el mismo le retorna un JWT Token al usuario para que lo pueda utilizar
+en las operaciones crud del sistema.
+
+[[file:img/login.png]]
+
+*** Crear un nuevo tópico
+El software permite crear un nuevo tópico mediante un *POST* al endpoint
+*/topicos*, la información debe ir en un formato valido, de no ser así
+se maneja el error y se notifica al usuario, si la información es
+correcta se crea un nuevo registro en la base de datos, para realizar
+está acción se requiere un token de usuario valido.
+
+[[file:img/post.png]]
+
+*** Mostrar todos los tópicos creados
+El software permite listar todos los tópicos mediante un *GET* al endpoint
+*/topicos*, se pueden enviar datos de paginacion para realizar está acción no se requiere un token de usuario.
+
+[[file:img/list.png]]
+
+*** Mostrar un tópico especifico
+El software permite mostrar un tópico especifico mediante un *GET* al endpoint
+*/topicos/{id}*, el id debe existir en la base de datos, de no ser así
+se maneja el error y se notifica al usuario, si el id es correcto se
+le manda al usuario los datos del tópico solicitado, para realizar
+está acción no se requiere un token de usuario.
+
+[[file:img/get.png]]
+
+*** Actualizar un tópico
+El software permite actualizar un tópico mediante un *PUT* al endpoint
+*/topicos/{id}*, la información debe ir en un formato valido y el id
+del tópico debe existir en la base de datos, de no ser así
+se maneja el error y se notifica al usuario, si la información es
+correcta se guarda el registro en la base de datos, para realizar
+está acción se requiere un token de usuario valido.
+
+[[file:img/put.png]]
+
+*** Actualizar un tópico
+El software permite eliminar un tópico mediante un *DELETE* al
+endpoint */topicos/{id}*, el id del tópico debe existir en la base de
+datos, de no ser así se maneja el error y se notifica al usuario, si
+el id es correcto se borra el registro de la base de datos, para
+realizar está acción se requiere un token de usuario valido.
+
+[[file:img/delete.png]]
